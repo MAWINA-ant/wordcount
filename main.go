@@ -1,7 +1,6 @@
 package main
 
 import (
-	"errors"
 	"flag"
 	"fmt"
 	"os"
@@ -25,9 +24,6 @@ func main() {
 func readInput() (src string, err error) {
 	flag.Parse()
 	src = strings.Join(flag.Args(), "")
-	if src == "" {
-		return src, errors.New("missing string to match")
-	}
 	return src, nil
 }
 
@@ -38,6 +34,9 @@ func fail(err error) {
 }
 
 func count(src string) int {
+	if len(src) == 0 {
+		return 0
+	}
 	lstStr := strings.Split(src, " ")
 	return len(lstStr)
 }
